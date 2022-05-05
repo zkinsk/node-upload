@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const exphbs = require('express-handlebars');
 require('dotenv').config();
 
 const routes = require('./routes');
@@ -8,10 +7,10 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 app.use(routes);
 
