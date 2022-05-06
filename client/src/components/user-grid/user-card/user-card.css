@@ -1,5 +1,5 @@
 .user_card {
-  background-color: rgb(189, 189, 189);
+  background-color: rgb(138, 138, 138);
   padding: 1rem;
   border: 1px transparent solid;
   border-radius: 5px;
@@ -11,7 +11,9 @@
 }
 
 .user_card-info {
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
+  color: white;
 }
