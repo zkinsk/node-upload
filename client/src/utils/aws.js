@@ -6,7 +6,7 @@ async function upLoadFile(file, signedRequest, url) {
     });
     return response;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     alert('Could not upload file');
   }
 }
@@ -18,10 +18,9 @@ export async function getSignedRequest(file) {
       method: 'GET',
     });
     const data = await response.json();
-    console.log('data :: ', data);
     return upLoadFile(file, data.signedRequest, data.url);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     alert('Could not get signed URL.');
   }
 }

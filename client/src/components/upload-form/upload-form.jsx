@@ -31,7 +31,6 @@ const UploadForm = ({ onAddUser }) => {
       }
     });
     if (!valid) return;
-    console.log('submitted');
     onAddUser({ ...userData, imageUrl: userFileURL });
     setUserData(defaultUserData);
     setUserFileURL(undefined);
