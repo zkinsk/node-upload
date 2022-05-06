@@ -38,7 +38,7 @@ const UploadForm = ({ onAddUser }) => {
   };
 
   const handleChange = (e) => {
-    setUserData((prevState) => ({ ...prevState, [e.target.name]: e.target.value.trim() }));
+    setUserData((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
   };
 
   return (
