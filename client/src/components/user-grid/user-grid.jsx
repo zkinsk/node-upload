@@ -2,17 +2,11 @@ import React from 'react';
 import UserCard from './user-card/user-card';
 import './user-grid.css';
 
-const UserGrid = () => {
-  const users = [
-    {
-      userName: 'bob',
-      fullName: 'boober',
-    },
-  ];
+const UserGrid = ({ users }) => {
   return (
     <div className="user_grid">
-      {users.map((user) => (
-        <UserCard {...user} />
+      {users.map((user, index) => (
+        <UserCard {...user} key={`${user.fullName}${user.userName}${index}`} />
       ))}
     </div>
   );

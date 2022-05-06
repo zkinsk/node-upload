@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getSignedRequest } from '../../utils/aws';
 import genericAvatar from '../../assets/images/generic-avatar.png';
 
 const defaultUserData = {
@@ -6,13 +7,19 @@ const defaultUserData = {
   fullName: '',
 };
 
-const UploadForm = () => {
+const UploadForm = ({ onAddUser }) => {
   const [file, setFile] = useState();
   const [userData, setUserData] = useState(defaultUserData);
   const [userFileURL, setUserFileURL] = useState(undefined);
 
-  React.useEffect(() => {
-    console.log('file :: ', file);
+  useEffect(() => {
+    if (file) {
+      getSignedRequest(file[0]).then((res) => {
+        const urlObj = new URL(res.url);
+        const imageUrl = `${urlObj.origin}${urlObj.pathname}`;
+        setUserFileURL(imageUrl);
+      });
+    }
   }, [file]);
 
   const handleFormSubmit = (e) => {
@@ -25,6 +32,7 @@ const UploadForm = () => {
     });
     if (!valid) return;
     console.log('submitted');
+    onAddUser({ ...userData, imageUrl: userFileURL });
     setUserData(defaultUserData);
     setUserFileURL(undefined);
   };
@@ -42,7 +50,7 @@ const UploadForm = () => {
           type="file"
           id="file-upload-input"
           onChange={(e) => {
-            setFile(e.target.files[0]);
+            setFile(e.target.files);
           }}
         />
       </div>
