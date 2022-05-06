@@ -1,0 +1,17 @@
+.user_card {
+  background-color: rgb(189, 189, 189);
+  padding: 1rem;
+  border: 1px transparent solid;
+  border-radius: 5px;
+}
+
+.user_card > img {
+  max-width: 200px;
+  aspect-ratio: 1/1;
+}
+
+.user_card-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
